@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:renderers="clr-namespace:SuppliersApp.Renderers"
+             x:Class="SuppliersApp.Views.VisitsPage"
+             Title="Shop Visit"
+             xmlns:Helpers="clr-namespace:SuppliersApp.Helpers">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="FrameStyle" TargetType="Frame">
+                <Setter Property="Padding" Value="10,0,0,0"/>
+                <Setter Property="BackgroundColor" Value="White"/>
+                <Setter Property="BorderColor" Value="#44A7C4"/>
+
+                <Setter Property="CornerRadius" Value="5"/>
+                <Setter Property="HeightRequest" Value="50"/>
+            </Style>
+
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <Grid >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            
+        </Grid.RowDefinitions>
+       
+       
+
+        <Image Source="logo.png"  WidthRequest="100" Grid.Row="0"
+                   Aspect="AspectFit" Margin="0,50,0,0" HorizontalOptions="CenterAndExpand"
+                   VerticalOptions="Start"/>
+        <!--<Label Text="Hammé Naturals" FontFamily="ThemeFontBold" TextColor="Black" Grid.Row="2"
+                   FontSize="Medium" HorizontalOptions="CenterAndExpand"/>-->
+        <StackLayout Grid.Row="1">
+
+            <ScrollView VerticalScrollBarVisibility="Never" Margin="0,0,0,50">
+               
+
+                    <StackLayout Spacing="10"  Margin="5,0,5,0">
+                    <StackLayout Orientation="Horizontal">
+
+                        <Label Text="Followup Type" FontSize="Small" FontFamily="ThemeFontBold"
+                                   TextColor="Black" VerticalTextAlignment="Center"
+                                   />
+                        <CheckBox x:Name="checkBox" HorizontalOptions="Center" IsChecked="{Binding Followupcheck, Mode=TwoWay}"/>
+                        
+                    </StackLayout>
+                    <Frame IsVisible="false"
+                                Style="{StaticResource FrameStyle}"
+                                BackgroundColor="White" BorderColor="LightGray"
+                                HeightRequest="50">
+                        <Frame.Triggers>
+                            
+                                <DataTrigger TargetType="Frame" Binding="{Binding Source={x:Reference checkBox}, Path=IsChecked}" Value="true">
+                                    <Setter Property="IsVisible" Value="true" />
+                                </DataTrigger>
+                            
+                        </Frame.Triggers>
+                        <DatePicker Date="{Binding Visit.FollowupDate, Mode=TwoWay}">
+                           
+                        </DatePicker>
+                    </Frame>
+
+                    <StackLayout Spacing="0">
+                            <Label Text="Remarks:" FontSize="Small" FontFamily="ThemeFontBold"
+                                   TextColor="Black"
+                                   />
+                            <Frame
+                                Style="{StaticResource FrameStyle}"
+                                BackgroundColor="White" BorderColor="LightGray"
+                                HeightRequest="50">
+                            <renderers:BorderlessEntry x:Name="shopName" Placeholder="Remarks..." PlaceholderColor="Black" TextColor="Black" Text="{Binding Visit.Remarks}" FontSize="14" Margin="5,0,0,0" />
+                            </Frame>
+                        </StackLayout>
+                    <Button BackgroundColor="#136EFA"
+                        Text="Save" CornerRadius="5" TextColor="White"
+                        Command="{Binding FollowupSaveCmd}"
+                        
+                    
+                       />
+
+                </StackLayout>
+               
+
+            </ScrollView>
+        </StackLayout>
+    </Grid>
+</ContentPage>

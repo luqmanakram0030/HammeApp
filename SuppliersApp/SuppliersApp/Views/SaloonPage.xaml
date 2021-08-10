@@ -1,0 +1,169 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:renderers="clr-namespace:SuppliersApp.Renderers" xmlns:input="clr-namespace:Plugin.InputKit.Shared.Controls;assembly=Plugin.InputKit" xmlns:rating="clr-namespace:Syncfusion.SfRating.XForms;assembly=Syncfusion.SfRating.XForms"
+             x:Class="SuppliersApp.Views.SaloonPage">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <Style x:Key="FrameStyle" TargetType="Frame">
+                <Setter Property="Padding" Value="10,0,0,0"/>
+                <Setter Property="BackgroundColor" Value="White"/>
+                <Setter Property="BorderColor" Value="#44A7C4"/>
+
+                <Setter Property="CornerRadius" Value="15"/>
+                <Setter Property="HeightRequest" Value="50"/>
+            </Style>
+
+        </ResourceDictionary>
+    </ContentView.Resources>
+
+    <ScrollView>
+        <StackLayout Padding=" 16">
+            <!--Here is the Outer Frame-->
+
+            <Frame CornerRadius="10">
+                <StackLayout>
+                    <!--Frame and Heading for Form is Used Here-->
+
+                    <Frame CornerRadius="10" BackgroundColor="{StaticResource NormalColor}">
+                        <StackLayout >
+                            <Label x:Name="Heading" Text="Questionnaire Survey" FontFamily="ThemeFontBold" TextColor="White" FontSize="22" HorizontalOptions="Center"/>
+                            <Label x:Name="SubHeading" Text="for Barer/Salon" TextColor="White" FontFamily="ThemeFontBold"  HorizontalOptions="Center"/>
+                        </StackLayout>
+                    </Frame>
+                    <!--Question NO 1-->
+                    <Label Text="How many head/body message do you do in a day?" FontSize="17" TextColor="Black" FontAttributes="Bold"/>
+
+                    <Frame
+                            Style="{StaticResource FrameStyle}">
+
+                        <renderers:BorderlessEntry 
+                            Placeholder="XX" 
+                            Keyboard="Numeric"
+                            FontSize="Caption" />
+                    </Frame>
+
+                    <!--Question NO 2, Sub Questions are in Grid-->
+
+                    <Label Text="Which brand/products you are using in your services specifically for skin/hair?" FontSize="Small" TextColor="Black" FontAttributes="Bold"/>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="5*"/>
+                            <ColumnDefinition Width="5*"/>
+                        </Grid.ColumnDefinitions>
+                        <!--Skin Products Entry-->
+
+                        <StackLayout Grid.Column="0" HorizontalOptions="Center">
+                            <Frame CornerRadius="5" BackgroundColor="{StaticResource NormalColor}">
+                                <Label Text="Skin Products" 
+                                    FontSize="Caption" 
+                                    TextColor="White" 
+                                    FontAttributes="Bold"/>
+                            </Frame>
+                            <Frame
+                             Style="{StaticResource FrameStyle}">
+                                <renderers:BorderlessEntry 
+                                    Placeholder="Skin Products"
+                                    FontSize="12"/>
+                            </Frame>
+                        </StackLayout>
+
+                        <!--Hair Products Entry-->
+
+                        <StackLayout Grid.Column="1" HorizontalOptions="Center">
+                            <Frame CornerRadius="5" BackgroundColor="{StaticResource NormalColor}">
+                                <Label Text="Hair Products" 
+                                    FontSize="Small" 
+                                    TextColor="White"
+                                    FontAttributes="Bold"/>
+                            </Frame>
+                            <Frame
+                             Style="{StaticResource FrameStyle}">
+                                <renderers:BorderlessEntry 
+                                    Placeholder="Hair Products"
+                                    FontSize="Caption"/>
+                            </Frame>
+                        </StackLayout>
+                    </Grid>
+
+                    <!--Question No 3-->
+
+                    <Label Text="Do you have retail product? If yes, please menton." FontSize="Small" TextColor="Black" FontAttributes="Bold"/>
+                    <input:RadioButtonGroupView>
+
+                        <input:RadioButton Text="Yes"  TextColor="Black" TextFontSize="Caption" HeightRequest="20"/>
+                       
+                        <input:RadioButton Text="No" HeightRequest="20" TextColor="Black" TextFontSize="Caption"/>
+
+                    </input:RadioButtonGroupView>
+
+                    <!--Question No 4-->
+
+                    <Label Text="Are you getting any benefit against using above products?" FontSize="Small" TextColor="Black" FontAttributes="Bold"/>
+
+                    <input:RadioButtonGroupView>
+                        <input:RadioButton Text="Yes" TextColor="Black" HeightRequest="20" TextFontSize="Caption"/>
+                        <input:RadioButton Text="No" TextColor="Black" HeightRequest="20" TextFontSize="Caption"/>
+                    </input:RadioButtonGroupView>
+
+                    <!--Question No 5-->
+
+                    <Label Text="If above answer is NO then! Would you be interested in brand providing you any benefit using their products?" FontSize="Small" TextColor="Black" FontAttributes="Bold"/>
+                    <input:RadioButtonGroupView>
+                        <input:RadioButton Text="Yes" TextColor="Black" HeightRequest="20" TextFontSize="Caption"/>
+                        <input:RadioButton Text="No" TextColor="Black" HeightRequest="20" TextFontSize="Caption"/>
+                    </input:RadioButtonGroupView>
+
+                    <!--Question No 6-->
+
+                    <Label Text="Total constructed area of salon?" FontSize="Small" TextColor="Black" FontAttributes="Bold"/>
+
+                    <Frame
+                             Style="{StaticResource FrameStyle}">
+                        <renderers:BorderlessEntry 
+                            Placeholder="Area of salon"
+                            FontSize="Caption"/>
+                    </Frame>
+
+                    <!--Question No 7-->
+
+                    <Label Text="Do you want area of improvement of your salon?" FontSize="Small" TextColor="Black" FontAttributes="Bold"/>
+                    <input:RadioButtonGroupView>
+                        <input:RadioButton Text="Yes" TextColor="Black" HeightRequest="20" TextFontSize="Caption"/>
+                        <input:RadioButton Text="No" TextColor="Black" HeightRequest="20" TextFontSize="Caption"/>
+                    </input:RadioButtonGroupView>
+
+                    <!--Question No 8-->
+
+                    <Label Text="Rate salon out of '5'." Margin="0,5,0,0" FontSize="Small" TextColor="Black" FontAttributes="Bold"/>
+                    <StackLayout>
+
+                        <!--Rate Ambiance-->
+
+                        <Label Text="Ambiance" FontSize="Caption" TextColor="Black" FontAttributes="Bold"/>
+                        <rating:SfRating Precision="Standard" Value="3" />
+                    </StackLayout>
+
+                    <!--Rate Discipline-->
+
+                    <StackLayout >
+                        <Label Text="Discipline" FontSize="Caption" TextColor="Black" FontAttributes="Bold"/>
+                        <rating:SfRating Precision="Standard" Value="3" />
+                    </StackLayout>
+
+                    <!--Rate Behavior-->
+
+                    <StackLayout >
+                        <Label Text="Behavior" FontSize="Caption" TextColor="Black" FontAttributes="Bold"/>
+                        <rating:SfRating Precision="Standard" Value="3"  />
+                    </StackLayout>
+
+                    <Button Text="Submit" BackgroundColor="{StaticResource NormalColor}" Clicked="Button_Clicked" HorizontalOptions="Center" WidthRequest="200" CornerRadius="20" Margin="0,20,0,200"/>
+
+                </StackLayout>
+            </Frame>
+        </StackLayout>
+    </ScrollView>
+</ContentView>

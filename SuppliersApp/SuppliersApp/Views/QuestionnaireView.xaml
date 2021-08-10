@@ -1,0 +1,428 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+              xmlns:ListCollection="clr-namespace:System.Collections.Generic;assembly=netstandard"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:combobox="clr-namespace:Syncfusion.XForms.ComboBox;assembly=Syncfusion.SfComboBox.XForms" xmlns:renderer="clr-namespace:SuppliersApp.Renderers"
+             x:Class="SuppliersApp.Views.QuestionnaireView">
+    <ContentPage.Background>
+        <LinearGradientBrush EndPoint="0,1">
+            <GradientStop Color="#40E0D0"
+                              Offset="0.3"/>
+            <GradientStop Color="#FF0080"
+                              Offset="1.0"/>
+        </LinearGradientBrush>
+    </ContentPage.Background>
+    <ScrollView>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Frame Margin="10"
+               CornerRadius="15"
+               BackgroundColor="Black"
+               Opacity="0.3"/>
+            <Frame Margin="10"
+               CornerRadius="15"
+               BackgroundColor="Transparent">
+                <StackLayout>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Frame CornerRadius="10" 
+                               BackgroundColor="#cc5333"
+                               BorderColor="White"
+                               Opacity="0.3"/>
+                        <Frame CornerRadius="10" 
+                               BackgroundColor="Transparent">
+                            <StackLayout >
+                                <Label Text="Questionnaire Survey" 
+                                       FontAttributes="Bold" 
+                                       TextColor="White" 
+                                       FontSize="22" 
+                                       HorizontalOptions="Center"/>
+                                <Label Text="for Barer/Salon" 
+                                       TextColor="White" 
+                                       FontAttributes="Bold" 
+                                       HorizontalOptions="Center"/>
+                            </StackLayout>
+                        </Frame>
+                    </Grid>
+
+
+                    <!--Questions-->
+
+                    <Label Text="How many customers do you handle at a time?"
+                           Style="{StaticResource headings}"/>
+                    <Frame Style="{StaticResource entryFrame}">
+                        <combobox:SfComboBox Style="{StaticResource comboBox}" SelectedItem="{Binding clsSalon.CustomerHanleAtTime, Mode=TwoWay}">
+                            <combobox:SfComboBox.ComboBoxSource>
+                                <ListCollection:List x:TypeArguments="x:String">
+                                    <x:String>1</x:String>
+                                    <x:String>2</x:String>
+                                    <x:String>3</x:String>
+                                </ListCollection:List>
+                            </combobox:SfComboBox.ComboBoxSource>
+                        </combobox:SfComboBox>
+                    </Frame>
+
+                    
+                    
+                    <Label Text="How many employees do you have?"
+                           Style="{StaticResource headings}"/>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="3*"/>
+                            <ColumnDefinition Width="3*"/>
+                            <ColumnDefinition Width="3*"/>
+                        </Grid.ColumnDefinitions>
+                        <StackLayout HorizontalOptions="Center">
+                            <Label Text="Hair Staff"
+                                   HorizontalTextAlignment="Center"
+                                   Style="{StaticResource headings}"/>
+                            <Frame Style="{StaticResource entryFrame}">
+                                <combobox:SfComboBox Style="{StaticResource comboBox}"  >
+                                    <combobox:SfComboBox.ComboBoxSource>
+                                        <ListCollection:List x:TypeArguments="x:String">
+                                            <x:String>1</x:String>
+                                            <x:String>2</x:String>
+                                            <x:String>3</x:String>
+                                        </ListCollection:List>
+                                    </combobox:SfComboBox.ComboBoxSource>
+                                </combobox:SfComboBox>
+                            </Frame>
+                        </StackLayout>
+                        <StackLayout Grid.Column="1"
+                                     HorizontalOptions="Center">
+                            <Label Text="Skin Staff"
+                                   HorizontalTextAlignment="Center"
+                                   Style="{StaticResource headings}"/>
+                            <Frame Style="{StaticResource entryFrame}">
+                                <combobox:SfComboBox Style="{StaticResource comboBox}">
+                                    <combobox:SfComboBox.ComboBoxSource>
+                                        <ListCollection:List x:TypeArguments="x:String">
+                                            <x:String>1</x:String>
+                                            <x:String>2</x:String>
+                                            <x:String>3</x:String>
+                                        </ListCollection:List>
+                                    </combobox:SfComboBox.ComboBoxSource>
+                                </combobox:SfComboBox>
+                            </Frame>
+                        </StackLayout>
+                        <StackLayout Grid.Column="2"
+                                     HorizontalOptions="Center">
+                            <Label Text="Makeup Staff"
+                                   HorizontalTextAlignment="Center"
+                                   Style="{StaticResource headings}"/>
+                            <Frame Style="{StaticResource entryFrame}">
+                                <combobox:SfComboBox Style="{StaticResource comboBox}">
+                                    <combobox:SfComboBox.ComboBoxSource>
+                                        <ListCollection:List x:TypeArguments="x:String">
+                                            <x:String>1</x:String>
+                                            <x:String>2</x:String>
+                                            <x:String>3</x:String>
+                                        </ListCollection:List>
+                                    </combobox:SfComboBox.ComboBoxSource>
+                                </combobox:SfComboBox>
+                            </Frame>
+                        </StackLayout>
+                    </Grid>
+                    <Label Text="Total Staff"
+                           Style="{StaticResource headings}"/>
+                    <Frame Style="{StaticResource entryFrame}">
+                        <combobox:SfComboBox Style="{StaticResource comboBox}" SelectedItem="{Binding clsSalon.Staff, Mode=TwoWay}">
+                            <combobox:SfComboBox.ComboBoxSource>
+                                <ListCollection:List x:TypeArguments="x:String">
+                                    <x:String>1</x:String>
+                                    <x:String>2</x:String>
+                                    <x:String>3</x:String>
+                                </ListCollection:List>
+                            </combobox:SfComboBox.ComboBoxSource>
+                        </combobox:SfComboBox>
+                    </Frame>
+                    <Label Text="How many customers do you handle in a day?"
+                           Style="{StaticResource headings}"/>
+                    <Frame Style="{StaticResource entryFrame}">
+                        <combobox:SfComboBox Style="{StaticResource comboBox}" SelectedItem="{Binding clsSalon.CustomerHanleInDay, Mode=TwoWay}" >
+                            <combobox:SfComboBox.ComboBoxSource>
+                                <ListCollection:List x:TypeArguments="x:String">
+                                    <x:String>1</x:String>
+                                    <x:String>2</x:String>
+                                    <x:String>3</x:String>
+                                </ListCollection:List>
+                            </combobox:SfComboBox.ComboBoxSource>
+                        </combobox:SfComboBox>
+                    </Frame>
+                    <Label Text="How many skin facials do you do in a day?"
+                           Style="{StaticResource headings}"/>
+                    <Frame Style="{StaticResource entryFrame}">
+                        <combobox:SfComboBox Style="{StaticResource comboBox}" SelectedItem="{Binding clsSalon.SkinFacialInDay, Mode=TwoWay}" >
+                            <combobox:SfComboBox.ComboBoxSource>
+                                <ListCollection:List x:TypeArguments="x:String">
+                                    <x:String>1</x:String>
+                                    <x:String>2</x:String>
+                                    <x:String>3</x:String>
+                                </ListCollection:List>
+                            </combobox:SfComboBox.ComboBoxSource>
+                        </combobox:SfComboBox>
+                    </Frame>
+                    <Label Text="How many facial beds you have?"
+                           Style="{StaticResource headings}"/>
+                    <Frame Style="{StaticResource entryFrame}">
+                        <combobox:SfComboBox Style="{StaticResource comboBox}" SelectedItem="{Binding clsSalon.TotalFacialBeds, Mode=TwoWay}">
+                            <combobox:SfComboBox.ComboBoxSource>
+                                <ListCollection:List x:TypeArguments="x:String">
+                                    <x:String>1</x:String>
+                                    <x:String>2</x:String>
+                                    <x:String>3</x:String>
+                                </ListCollection:List>
+                            </combobox:SfComboBox.ComboBoxSource>
+                        </combobox:SfComboBox>
+                    </Frame>
+                    <Label Text="How many haircuts do you do in a day?"
+                           Style="{StaticResource headings}"/>
+                    <Frame Style="{StaticResource entryFrame}">
+                        <combobox:SfComboBox Style="{StaticResource comboBox}" SelectedItem="{Binding clsSalon.HairCutsADay, Mode=TwoWay}">
+                            <combobox:SfComboBox.ComboBoxSource>
+                                <ListCollection:List x:TypeArguments="x:String">
+                                    <x:String>1</x:String>
+                                    <x:String>2</x:String>
+                                    <x:String>3</x:String>
+                                </ListCollection:List>
+                            </combobox:SfComboBox.ComboBoxSource>
+                        </combobox:SfComboBox>
+                    </Frame>
+                    <Label Text="How many chairs you have?"
+                           Style="{StaticResource headings}"/>
+                    <Frame Style="{StaticResource entryFrame}">
+                        <combobox:SfComboBox Style="{StaticResource comboBox}"  SelectedItem="{Binding clsSalon.TotalChairs, Mode=TwoWay}">
+                            <combobox:SfComboBox.ComboBoxSource>
+                                <ListCollection:List x:TypeArguments="x:String">
+                                    <x:String>1</x:String>
+                                    <x:String>2</x:String>
+                                    <x:String>3</x:String>
+                                </ListCollection:List>
+                            </combobox:SfComboBox.ComboBoxSource>
+                        </combobox:SfComboBox>
+                    </Frame>
+                    <Label Text="Do you offer any combo deals?If any, please mention or provide us your pamphlet."
+                           Style="{StaticResource headings}"/>
+                    <StackLayout Orientation="Horizontal" RadioButtonGroup.SelectedValue="{Binding clsSalon.OfferDeals, Mode=TwoWay}">
+                        <renderer:RadioButton_Renderer Content="Yes"
+                                                       x:Name="YescomboDealRadioBTN"
+                                                       TextColor="White"/>
+                        <renderer:RadioButton_Renderer Content="No"
+                                                       x:Name="NocomboDealRadioBTN"
+                                                       TextColor="White"/>
+                    </StackLayout>
+                    <Frame Style="{StaticResource entryFrame}"
+                           x:Name="comboDealEntry">
+                        <renderer:BorderlessEntry Style="{StaticResource borderlessentry}" Text="{Binding clsSalon.SkinFacialInDay, Mode=TwoWay}"/>
+                    </Frame>
+                    <Label Text="How many head/body Massage do you do in a day?"
+                           Style="{StaticResource headings}"/>
+                    <Frame Style="{StaticResource entryFrame}">
+                        <combobox:SfComboBox Style="{StaticResource comboBox}" SelectedItem="{Binding clsSalon.MassageInDay, Mode=TwoWay}">
+                            <combobox:SfComboBox.ComboBoxSource>
+                                <ListCollection:List x:TypeArguments="x:String">
+                                    <x:String>1</x:String>
+                                    <x:String>2</x:String>
+                                    <x:String>3</x:String>
+                                </ListCollection:List>
+                            </combobox:SfComboBox.ComboBoxSource>
+                        </combobox:SfComboBox>
+                    </Frame>
+                    <Label Text="Which brand/products you are using in your services specifically for skin/hair?"
+                           Style="{StaticResource headings}"/>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="5*"/>
+                            <ColumnDefinition Width="5*"/>
+                        </Grid.ColumnDefinitions>
+                        <StackLayout>
+                            <Label Text="Skin Products"
+                                   Style="{StaticResource headings}"
+                                   HorizontalTextAlignment="Center"/>
+                            <Frame Style="{StaticResource entryFrame}">
+                                <combobox:SfComboBox Style="{StaticResource comboBox}" SelectedItem="{Binding clsSalon.WhichBrands, Mode=TwoWay}">
+                                    <combobox:SfComboBox.ComboBoxSource>
+                                        <ListCollection:List x:TypeArguments="x:String">
+                                            <x:String>Olivia</x:String>
+                                            <x:String>Omega</x:String>
+                                            <x:String>Dove</x:String>
+                                        </ListCollection:List>
+                                    </combobox:SfComboBox.ComboBoxSource>
+                                </combobox:SfComboBox>
+                            </Frame>
+                        </StackLayout>
+                        <StackLayout Grid.Column="1">
+                            <Label Text="Skin Products"
+                                   Style="{StaticResource headings}"
+                                   HorizontalTextAlignment="Center"/>
+                            <Frame Style="{StaticResource entryFrame}">
+                                <combobox:SfComboBox Style="{StaticResource comboBox}" SelectedItem="{Binding clsSalon.SkinFacialInDay, Mode=TwoWay}">
+                                    <combobox:SfComboBox.ComboBoxSource>
+                                        <ListCollection:List x:TypeArguments="x:String">
+                                            <x:String>Keune</x:String>
+                                            <x:String>SetWet</x:String>
+                                            <x:String>Clear</x:String>
+                                        </ListCollection:List>
+                                    </combobox:SfComboBox.ComboBoxSource>
+                                </combobox:SfComboBox>
+                            </Frame>
+                        </StackLayout>
+                    </Grid>
+                    <Label Text="Do you have retail product? If yes, please menton."
+                           Style="{StaticResource headings}"/>
+                    <StackLayout Orientation="Horizontal" RadioButtonGroup.SelectedValue="{Binding clsSalon.RetailProduct, Mode=TwoWay}">
+                        <renderer:RadioButton_Renderer Content="Yes"
+                                                       x:Name="YesretailRadioBTN"
+                                                       TextColor="White"/>
+                        <renderer:RadioButton_Renderer Content="No"
+                                                       x:Name="NoretailRadioBTN"
+                                                       TextColor="White"/>
+                    </StackLayout>
+                    <Frame Style="{StaticResource entryFrame}">
+                        <renderer:BorderlessEntry Style="{StaticResource borderlessentry}"/>
+                    </Frame>
+
+                    <Label Text="Are you getting any benefit against using above products?"
+                           Style="{StaticResource headings}"/>
+                    <StackLayout Orientation="Horizontal" RadioButtonGroup.SelectedValue="{Binding clsSalon.BenefitRetailProduct, Mode=TwoWay}">
+                        <renderer:RadioButton_Renderer Content="Yes"
+                                                       x:Name="YesbenefitRadioBTN"
+                                                       TextColor="White"/>
+                        <renderer:RadioButton_Renderer Content="No"
+                                                       x:Name="NobenefitRadioBTN"
+                                                       TextColor="White"/>
+                    </StackLayout>
+                    <StackLayout>
+                        <Label Text="If above answer is NO then! Would you be interested in brand providing you any benefit using their products?"
+                               Style="{StaticResource headings}"/>
+                        <StackLayout Orientation="Horizontal" RadioButtonGroup.SelectedValue="{Binding clsSalon.InterestInBrand, Mode=TwoWay}">
+                            <renderer:RadioButton_Renderer Content="Yes"
+                                                       x:Name="YesbrandRadioBTN"
+                                                       TextColor="White"/>
+                            <renderer:RadioButton_Renderer Content="No"
+                                                       x:Name="NobrandRadioBTN"
+                                                       TextColor="White"/>
+                        </StackLayout>
+                    </StackLayout>
+                    <Label Text="Total constructed area of salon?"
+                           Style="{StaticResource headings}"/>
+                    <Frame Style="{StaticResource entryFrame}">
+                        <renderer:BorderlessEntry Style="{StaticResource borderlessentry}" Text="{Binding clsSalon.AreaOfSalon, Mode=TwoWay}"
+                                                  Placeholder="Area of Salon"/>
+                    </Frame>
+                    <Label Text="Do you want area of improvement of your salon?"
+                           Style="{StaticResource headings}"/>
+                    <StackLayout Orientation="Horizontal" RadioButtonGroup.SelectedValue="{Binding clsSalon.WantAreaForImprovement, Mode=TwoWay}">
+                        <renderer:RadioButton_Renderer Content="Yes"
+                                                       x:Name="YesareaRadioBTN"
+                                                       TextColor="White"/>
+                        <renderer:RadioButton_Renderer Content="No"
+                                                       x:Name="NoareaRadioBTN"
+                                                       TextColor="White"/>
+                    </StackLayout>
+                    <Label Text="Rate Salon out of 5."
+                           Style="{StaticResource headings}"/>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Frame BackgroundColor="Transparent"
+                               BorderColor="White" 
+                               Padding="5"
+                               CornerRadius="10">
+                            <StackLayout>
+                                <Label Text="Ambiance:"
+                                       Style="{StaticResource headings}"
+                                       HorizontalTextAlignment="Center"/>
+                                <Frame Style="{StaticResource rateFrame}">
+                                    <combobox:SfComboBox Style="{StaticResource RatecomboBox}" SelectedItem="{Binding clsSalon.Ambiance, Mode=TwoWay}"
+                                                         SelectedValue="Rate">
+                                        <combobox:SfComboBox.ComboBoxSource>
+                                            <ListCollection:List x:TypeArguments="x:String">
+                                                <x:String>1</x:String>
+                                                <x:String>2</x:String>
+                                                <x:String>3</x:String>
+                                                <x:String>4</x:String>
+                                                <x:String>5</x:String>
+                                            </ListCollection:List>
+                                        </combobox:SfComboBox.ComboBoxSource>
+                                    </combobox:SfComboBox>
+                                </Frame>
+                            </StackLayout>
+                        </Frame>
+
+                        <Frame BackgroundColor="Transparent"
+                               BorderColor="White" 
+                               Padding="5"
+                               CornerRadius="10"
+                               Grid.Column="1">
+                            <StackLayout>
+                                <Label Text="Discipline:"
+                                       Style="{StaticResource headings}"
+                                       HorizontalTextAlignment="Center"/>
+                                <Frame Style="{StaticResource rateFrame}">
+                                    <combobox:SfComboBox Style="{StaticResource RatecomboBox}" SelectedItem="{Binding clsSalon.Displine, Mode=TwoWay}"
+                                                         SelectedValue="Rate">
+                                        <combobox:SfComboBox.ComboBoxSource>
+                                            <ListCollection:List x:TypeArguments="x:String">
+                                                <x:String>1</x:String>
+                                                <x:String>2</x:String>
+                                                <x:String>3</x:String>
+                                                <x:String>4</x:String>
+                                                <x:String>5</x:String>
+                                            </ListCollection:List>
+                                        </combobox:SfComboBox.ComboBoxSource>
+                                    </combobox:SfComboBox>
+                                </Frame>
+                            </StackLayout>
+                        </Frame>
+
+                        <Frame BackgroundColor="Transparent"
+                               BorderColor="White" 
+                               Padding="5"
+                               CornerRadius="10"
+                               Grid.Column="2">
+                            <StackLayout>
+                                <Label Text="Behavior:"
+                                       Style="{StaticResource headings}"
+                                       HorizontalTextAlignment="Center"/>
+                                <Frame Style="{StaticResource rateFrame}">
+                                    <combobox:SfComboBox Style="{StaticResource RatecomboBox}" SelectedItem="{Binding clsSalon.Behaviour, Mode=TwoWay}">
+                                        <combobox:SfComboBox.ComboBoxSource>
+                                            <ListCollection:List x:TypeArguments="x:String">
+                                                <x:String>1</x:String>
+                                                <x:String>2</x:String>
+                                                <x:String>3</x:String>
+                                                <x:String>4</x:String>
+                                                <x:String>5</x:String>
+                                            </ListCollection:List>
+                                        </combobox:SfComboBox.ComboBoxSource>
+                                    </combobox:SfComboBox>
+                                </Frame>
+                            </StackLayout>
+                        </Frame>
+                    </Grid>
+                    <Frame Padding="0"
+                           BackgroundColor="White"
+                           CornerRadius="40"
+                           BorderColor="White"
+                           HeightRequest="3"/>
+                    <Label Text="Submit"
+                           TextColor="White"
+                           HorizontalOptions="Center"
+                           FontAttributes="Bold"
+                           FontSize="Subtitle">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding SalonRegisterCommand}"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                </StackLayout>
+            </Frame>
+        </Grid>
+    </ScrollView>
+</ContentPage>

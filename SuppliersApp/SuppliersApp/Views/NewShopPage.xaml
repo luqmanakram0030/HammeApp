@@ -1,0 +1,464 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:renderers="clr-namespace:SuppliersApp.Renderers"
+             xmlns:ListCollection="clr-namespace:System.Collections.Generic;assembly=netstandard"
+             xmlns:combobox="clr-namespace:Syncfusion.XForms.ComboBox;assembly=Syncfusion.SfComboBox.XForms"
+             x:Class="SuppliersApp.Views.NewShopPage"
+             xmlns:helpers="clr-namespace:SuppliersApp.Helpers"
+             x:Name="Page"
+             NavigationPage.HasNavigationBar="False">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="FrameStyle" TargetType="Frame">
+                <Setter Property="Padding" Value="10,0,0,0"/>
+                <Setter Property="BackgroundColor" Value="White"/>
+                <Setter Property="BorderColor" Value="#44A7C4"/>
+
+                <Setter Property="CornerRadius" Value="15"/>
+                <Setter Property="HeightRequest" Value="50"/>
+            </Style>
+
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <Grid >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Image Source="MenuScreen.png" Aspect="AspectFill" Grid.RowSpan="5"/>
+        <StackLayout Grid.Row="0"  HeightRequest="50" BackgroundColor="{StaticResource NormalColor}" Orientation="Horizontal">
+            <Label Text="Hamme Naturals" Margin="30,0,0,0" CharacterSpacing="2" FontFamily="ThemeFontBold" FontSize="Small"
+                   HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" TextColor="White"/>
+            <Button Margin="5" Text="{Binding Attendancebtn,Mode=TwoWay}"  TextColor="{StaticResource NormalColor}"  HorizontalOptions="End" BackgroundColor="White" Command="{Binding AttendanceCommand}"
+                         Padding="10"/>
+        </StackLayout>
+
+        <Image Source="logo.png"  WidthRequest="100" Grid.Row="1"
+                   Aspect="AspectFit" Margin="0,50,0,0" HorizontalOptions="CenterAndExpand"
+                   VerticalOptions="Start"/>
+        <!--<Label Text="Hammé Naturals" FontFamily="ThemeFontBold" TextColor="Black" Grid.Row="2"
+                   FontSize="Medium" HorizontalOptions="CenterAndExpand"/>-->
+        <StackLayout Grid.Row="2">
+
+            <ScrollView VerticalScrollBarVisibility="Never" Margin="0,0,0,50">
+                <Frame Padding="20,30,20,50" BackgroundColor="Black" CornerRadius="30" Margin="15,15,15,15">
+
+                    <StackLayout Spacing="10" >
+                        <StackLayout Spacing="0">
+                            <Label Text="Shop Name"
+                                   Style="{StaticResource headings}"/>
+                            <Frame
+                                Style="{StaticResource FrameStyle}"
+                                BackgroundColor="White" BorderColor="LightGray"
+                                HeightRequest="50">
+                                <renderers:BorderlessEntry x:Name="shopName" Placeholder="ShopName" PlaceholderColor="Black" TextColor="Black" Text="{Binding clsShops.ShopName}" FontSize="14" Margin="5,0,0,0" />
+                            </Frame>
+                        </StackLayout>
+
+                        <Label x:Name="clsShops_ShopNameError" IsVisible="False" TextColor="Red" FontSize="12"/>
+
+                        <StackLayout Spacing="0">
+                            <Label Text="Contact Person"
+                                   Style="{StaticResource headings}"/>
+                            <Frame
+                                Style="{StaticResource FrameStyle}"
+                                BackgroundColor="White" BorderColor="LightGray"
+                                HeightRequest="50">
+                                <renderers:BorderlessEntry x:Name="contactPerson" Placeholder="ContactPerson" PlaceholderColor="Black" TextColor="Black" Text="{Binding clsShops.ContactPerson}" FontSize="14" Margin="5,0,0,0" />
+                            </Frame>
+                        </StackLayout>
+
+                        <Label x:Name="clsShops_ContactPersonError" IsVisible="False" TextColor="Red" FontSize="12"/>
+
+                        <StackLayout Spacing="0">
+
+                            <Label Text="Email"
+                                   Style="{StaticResource headings}"/>
+
+                            <Frame Style="{StaticResource FrameStyle}"
+                                   BackgroundColor="White" BorderColor="LightGray"
+                                   HeightRequest="50">
+
+                                <renderers:BorderlessEntry x:Name="emailEntry" Placeholder="Email" PlaceholderColor="Black" TextColor="Black" Text="{Binding clsShops.Email}" Keyboard="Email" FontSize="14" Margin="5,0,0,0" />
+
+                            </Frame>
+                        </StackLayout>
+
+                        <Label x:Name="clsShops_EmailError" IsVisible="False" TextColor="Red" FontSize="12"/>
+
+                        <CollectionView x:Name="picCollection" 
+                                        ItemsSource="{Binding imageObj,Mode=TwoWay}" 
+                                        HeightRequest="80"
+                                        IsVisible="{Binding IsVisible,Mode=TwoWay}">
+
+                            <CollectionView.ItemsLayout>
+                                <LinearItemsLayout ItemSpacing="5"
+                                                   Orientation="Horizontal"/>
+                            </CollectionView.ItemsLayout>
+
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate>
+
+                                    <Grid>
+
+                                        <Image Source="{Binding images, Mode=TwoWay}"
+                                               HeightRequest="80"
+                                               WidthRequest="80"
+                                               Aspect="AspectFill"/>
+
+                                        <Button BackgroundColor="{StaticResource NormalColor}"
+                                                ImageSource="{FontImage FontFamily=UserIcon,
+                                                        Glyph={x:Static helpers:IconFonts.Close},Color=White,Size=20}"
+                                                HorizontalOptions="End"
+                                                HeightRequest="25"
+                                                WidthRequest="25"
+                                                VerticalOptions="Start"
+                                                Command="{Binding Source={x:Reference picCollection},Path=BindingContext.delpicCmd}"
+                                                CommandParameter="{Binding}"/>
+                                    </Grid>
+
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+
+                        </CollectionView>
+
+                        <Grid ColumnDefinitions="*,*"
+                              HeightRequest="40">
+
+                            <Button CornerRadius="10"
+                                    Grid.Column="0"
+                                    HeightRequest="30"
+                                    ImageSource="{FontImage FontFamily=UserIcon,
+                                         Glyph={x:Static helpers:IconFonts.Camera},Color=Black,Size=20}"
+                                    Text="Camera"
+                                    Command="{Binding takePhoto}"
+                                    TextColor="Black"
+                                    BackgroundColor="SkyBlue"/>
+
+                            <Button CornerRadius="10"
+                                    Grid.Column="1"
+                                    
+                                    ImageSource="{FontImage FontFamily=UserIcon,
+                                         Glyph={x:Static helpers:IconFonts.CameraIris},Color=Black,Size=20}"
+                                    Text="Gallery"
+                                    Command="{Binding pickPhoto}"
+                                    TextColor="Black"
+                                    BackgroundColor="YellowGreen"/>
+
+                        </Grid>
+                        <!--<StackLayout Orientation="Horizontal">
+                            <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
+                                <Entry Placeholder="Shop Name" Text="{Binding clsShops.ShopName}" TextColor="Black" HorizontalOptions="FillAndExpand" FontFamily="ThemeFont"/>
+                                <Label x:Name="clsShops_ShopNameError" IsVisible="False" TextColor="Red" />
+                            </StackLayout>
+                            <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
+                                <Entry Placeholder="Contact Person" Text="{Binding clsShops.ContactPerson}" TextColor="Black" HorizontalOptions="FillAndExpand" FontFamily="ThemeFont"/>
+                                <Label x:Name="clsShops_ContactPersonError" IsVisible="False" TextColor="Red" />
+                            </StackLayout>
+                        </StackLayout>-->
+
+                        <!--<Entry Placeholder="Email" Text="{Binding clsShops.Email}" HorizontalOptions="FillAndExpand" />-->
+
+                        <StackLayout Spacing="0">
+                            <Label Text="CNIC"
+                                   Style="{StaticResource headings}"/>
+                            <Frame Style="{StaticResource FrameStyle}"
+                                   BackgroundColor="White" 
+                                   BorderColor="LightGray"
+                                   HeightRequest="50">
+                                <renderers:BorderlessEntry Placeholder="CNIC"
+                                                           PlaceholderColor="Black" 
+                                                           TextColor="Black"
+                                                           Text="{Binding clsShops.CNIC}"
+                                                           FontSize="14" 
+                                                           MaxLength="13"
+                                                           Margin="5,0,0,0" />
+                            </Frame>
+                        </StackLayout>
+
+
+
+                        <StackLayout Spacing="0">
+
+                            <Label Text="QRCode"
+                                       Style="{StaticResource headings}"/>
+
+                            <Frame Style="{StaticResource FrameStyle}"
+                                       BackgroundColor="White" 
+                                       BorderColor="LightGray"
+                                       HeightRequest="50">
+
+                                <Grid ColumnDefinitions="*,Auto">
+
+                                    <renderers:BorderlessEntry Placeholder="QRCode"
+                                                                   x:Name="qrCode"
+                                                                   PlaceholderColor="Black" 
+                                                                   TextColor="Black"
+                                                                   Text="{Binding clsShops.QRCode,Mode=TwoWay}"
+                                                                   FontSize="14" 
+                                                                   Margin="5,0,0,0" />
+                                    <Button Text="Scan"
+                                                CornerRadius="10"
+                                                Grid.Column="1"
+                                                TextColor="Black"
+                                                Command="{Binding QrScanCommand}"
+                                                BackgroundColor="{StaticResource buttonBg}"/>
+
+                                </Grid>
+
+                            </Frame>
+
+                        </StackLayout>
+
+
+
+
+
+                        <!--<Entry Placeholder="QRCode" Text="{Binding clsShops.QRCode}" HorizontalOptions="FillAndExpand" />-->
+                        <!--<Label x:Name="clsShops_QRCodeError" IsVisible="False" TextColor="Red" />-->
+                        <!--<StackLayout Orientation="Horizontal">
+                            <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
+                                <Entry Placeholder="Longitude" Text="{Binding clsShops.Longitude}" TextColor="Black" HorizontalOptions="FillAndExpand" FontFamily="ThemeFont"/>
+                                <Label x:Name="clsShops_LongitudeError" IsVisible="False" TextColor="Red" />
+                            </StackLayout>
+                            <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
+                                <Entry Placeholder="Latitude" Text="{Binding clsShops.Latitude}" TextColor="Black" HorizontalOptions="FillAndExpand" FontFamily="ThemeFont"/>
+                                <Label x:Name="clsShops_LatitudeError" IsVisible="False" TextColor="Red" />
+                            </StackLayout>
+                        </StackLayout>-->
+
+                        <!--Abubakar Code-->
+                        <StackLayout Spacing="0">
+                            <Label Text="Select a Category"
+                                   Style="{StaticResource headings}"/>
+                            <Frame
+                        Style="{StaticResource FrameStyle}"
+                        BackgroundColor="White" BorderColor="LightGray"
+                        HeightRequest="50">
+                                <combobox:SfComboBox SelectedItem="{Binding clsShops.Category}" Style="{StaticResource comboBox}" TextColor="Black" SelectedValue="Select a Category" x:Name="comboBox"  BackgroundColor="White">
+                                    <combobox:SfComboBox.ComboBoxSource>
+                                        <ListCollection:List x:TypeArguments="x:String">
+                                            <x:String>General Store</x:String>
+                                            <x:String>Departmental Store</x:String>
+                                            <x:String>Pharmacy</x:String>
+                                            <x:String>Shopping Mall</x:String>
+                                            <x:String>Other</x:String>
+                                        </ListCollection:List>
+                                    </combobox:SfComboBox.ComboBoxSource>
+                                </combobox:SfComboBox>
+                            </Frame>
+                        </StackLayout>
+
+                        <StackLayout Spacing="0">
+                            <Label Text="Tax Type:"
+                           Style="{StaticResource headings}"/>
+                            <Frame Style="{StaticResource FrameStyle}"
+                                   BackgroundColor="White" 
+                                   BorderColor="LightGray"
+                                   HeightRequest="50">
+                                <combobox:SfComboBox Style="{StaticResource comboBox}"
+                                                     SelectedItem="{Binding clsShops.TaxType}"
+                                                     TextColor="Black"
+                                                     SelectedValue="Select Tax Type">
+                                    <combobox:SfComboBox.ComboBoxSource>
+                                        <ListCollection:List x:TypeArguments="x:String">
+                                            <x:String>Registered</x:String>
+                                            <x:String>Non-Registered</x:String>
+                                        </ListCollection:List>
+                                    </combobox:SfComboBox.ComboBoxSource>
+                                </combobox:SfComboBox>
+                            </Frame>
+                        </StackLayout>
+
+                        <StackLayout Spacing="0">
+                            <Label Text="Sales Tax Return Number"
+                           Style="{StaticResource headings}"/>
+                            <Frame Style="{StaticResource FrameStyle}"
+                        BackgroundColor="White" BorderColor="LightGray"
+                        HeightRequest="50">
+                                <renderers:BorderlessEntry FontSize="14" 
+                                                           Text="{Binding clsShops.STRN}"
+                                                           PlaceholderColor="Black" 
+                                                           TextColor="Black"
+                                                           Margin="5,0,0,0"
+                                                           Placeholder="STRN"
+                                                           Keyboard="Numeric"/>
+                            </Frame>
+                        </StackLayout>
+
+                        <StackLayout Spacing="0">
+                            <Label Text="National Tax Number"
+                           Style="{StaticResource headings}"/>
+                            <Frame Style="{StaticResource FrameStyle}"
+                        BackgroundColor="White" BorderColor="LightGray"
+                        HeightRequest="50">
+                                <renderers:BorderlessEntry FontSize="14" 
+                                                           PlaceholderColor="Black" 
+                                                           TextColor="Black"
+                                                           Margin="5,0,0,0"
+                                                           Placeholder="NTN"
+                                                           Text="{Binding clsShops.NTN}"
+                                                           Keyboard="Numeric"/>
+                            </Frame>
+                        </StackLayout>
+
+                        <StackLayout Spacing="0">
+                            <Label Text="Class:"
+                                   Style="{StaticResource headings}"
+                                   VerticalOptions="Center"/>
+                            <Frame Style="{StaticResource FrameStyle}"
+                                   BackgroundColor="White" 
+                                   BorderColor="LightGray"
+                                   HeightRequest="50">
+                                <combobox:SfComboBox Style="{StaticResource comboBox}"
+                                                     SelectedValue="Select Class"
+                                                     TextColor="Black"
+                                                     SelectedItem="{Binding clsShops.ShopClass}">
+                                    <combobox:SfComboBox.ComboBoxSource>
+                                        <ListCollection:List x:TypeArguments="x:String">
+                                            <x:String>A+</x:String>
+                                            <x:String>A</x:String>
+                                            <x:String>B</x:String>
+                                            <x:String>C</x:String>
+                                            <x:String>D</x:String>
+                                            <x:String>E</x:String>
+                                            <x:String>F</x:String>
+                                            <x:String>G</x:String>
+                                        </ListCollection:List>
+                                    </combobox:SfComboBox.ComboBoxSource>
+                                </combobox:SfComboBox>
+                            </Frame>
+                        </StackLayout>
+
+                        <StackLayout Spacing="0">
+                            <Label Text="Shop Worth"
+                                   Style="{StaticResource headings}"/>
+                            <Frame Style="{StaticResource FrameStyle}"
+                                   BackgroundColor="White"
+                                   BorderColor="LightGray"
+                                   HeightRequest="50">
+                                <renderers:BorderlessEntry FontSize="14" 
+                                                           Margin="5,0,0,0"
+                                                           PlaceholderColor="Black" 
+                                                           TextColor="Black"
+                                                           Text="{Binding clsShops.ShopWorth}"
+                                                           Placeholder="ShopWorth"
+                                                           Keyboard="Numeric"/>
+                            </Frame>
+                        </StackLayout>
+                        <!--<Picker x:Name="picker" SelectedItem="{Binding clsShops.Category}" 
+        Title="Select a Category"
+        >
+                            <Picker.ItemsSource>
+                                <x:Array Type="{x:Type x:String}">
+                                    <x:String>General Store</x:String>
+                                    <x:String>Departmental Store</x:String>
+                                    <x:String>Pharmacy</x:String>
+                                    <x:String>Shopping Mall</x:String>
+                                    <x:String>Other</x:String>
+
+                                </x:Array>
+                            </Picker.ItemsSource>
+                        </Picker>-->
+                        <Label Text="Address"
+                               Style="{StaticResource headings}"/>
+                        <Frame Style="{StaticResource FrameStyle}"
+                        BackgroundColor="White" BorderColor="LightGray"
+                        HeightRequest="50">
+                            <renderers:BorderlessEntry FontSize="14" 
+                                                       Margin="5,0,0,0"
+                                                       PlaceholderColor="Black" 
+                                                       TextColor="Black"
+                                                       Text="{Binding clsShops.Address}"
+                                                       Placeholder="Address"/>
+                        </Frame>
+                        <!--<Label x:Name="clsShops_CategoryError" IsVisible="False" TextColor="Red" />-->
+                        <StackLayout Spacing="0">
+                            <Label Text="Phone No"
+                                   Style="{StaticResource headings}"/>
+                            <Frame
+                        Style="{StaticResource FrameStyle}"
+                        BackgroundColor="White" BorderColor="LightGray"
+                        HeightRequest="50">
+                                <renderers:BorderlessEntry Placeholder="PhoneNo"
+                                                           x:Name="phoneEntry"
+                                                           Text="{Binding clsShops.Phone}"
+                                                           PlaceholderColor="Black" 
+                                                           TextColor="Black"
+                                                           Keyboard="Telephone" 
+                                                           FontSize="14" 
+                                                           Margin="5,0,0,0"/>
+                            </Frame>
+                        </StackLayout>
+                        <!--<Entry Placeholder="Phone No" Text="{Binding clsShops.Phone}" HorizontalOptions="FillAndExpand" Keyboard="Telephone" MaxLength="11"/>-->
+                        <Label x:Name="clsShops_PhoneError" IsVisible="False" TextColor="Red" />
+
+                        <StackLayout Spacing="0">
+                            <Label Text="Mobile1"
+                                   Style="{StaticResource headings}"/>
+                            <Frame
+                        Style="{StaticResource FrameStyle}"
+                        BackgroundColor="White" BorderColor="LightGray"
+                        HeightRequest="50">
+                                <renderers:BorderlessEntry Placeholder="Mobile1" IsPassword="True"
+                                                           Text="{Binding clsShops.Mobile1}"
+                                                           PlaceholderColor="Black" 
+                                                           TextColor="Black"
+                                                           Keyboard="Telephone" FontSize="14" 
+                                                           Margin="5,0,0,0" 
+                                                           MaxLength="11"/>
+                            </Frame>
+                        </StackLayout>
+                        <!--<Entry Placeholder="Mobile1" Keyboard="Telephone" Text="{Binding clsShops.Mobile1}" HorizontalOptions="FillAndExpand"  MaxLength="11" />-->
+                        <StackLayout Spacing="0">
+                            <Label Text="Mobile2"
+                                   Style="{StaticResource headings}"/>
+                            <Frame
+                        Style="{StaticResource FrameStyle}"
+                        BackgroundColor="White" BorderColor="LightGray"
+                        HeightRequest="50">
+                                <renderers:BorderlessEntry Placeholder="Mobile2" IsPassword="True"
+                                                           Text="{Binding clsShops.Mobile2}"
+                                                           PlaceholderColor="Black" 
+                                                           TextColor="Black"
+                                                           Keyboard="Telephone" FontSize="14" 
+                                                           Margin="5,0,0,0" 
+                                                           MaxLength="11"/>
+                            </Frame>
+                        </StackLayout>
+                        <!--<Entry Placeholder="Mobile2" Keyboard="Telephone" Text="{Binding clsShops.Mobile2}"  HorizontalOptions="FillAndExpand" MaxLength="11" />-->
+
+
+                        <!--<Editor  Placeholder="Remarks" Text="{Binding clsShops.Remarks}"/>-->
+                        <!--<Label x:Name="clsShops_RemarksError" IsVisible="False" TextColor="Red" />-->
+
+                        <StackLayout Spacing="0">
+                            <Label Text="Remarks"
+                                   Style="{StaticResource headings}"/>
+                            <Frame
+                        Style="{StaticResource FrameStyle}"
+                        BackgroundColor="White" BorderColor="LightGray"
+                        HeightRequest="50">
+                                <Editor Placeholder="Remarks" 
+                                        PlaceholderColor="Black" 
+                                        TextColor="Black" 
+                                        Text="{Binding clsShops.Remarks}"/>
+
+
+                            </Frame>
+                        </StackLayout>
+                        <Button Text="Register" BackgroundColor="{StaticResource Key=buttonBg}" TextColor="Black" FontAttributes="Bold" CornerRadius="10" Margin="0,10,0,0" Command="{Binding ShopRegisterCommand}" />
+
+                    </StackLayout>
+                </Frame>
+            </ScrollView>
+
+
+        </StackLayout>
+    </Grid>
+
+</ContentPage>

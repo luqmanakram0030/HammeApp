@@ -1,0 +1,253 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:zxing="clr-namespace:ZXing.Net.Mobile.Forms;assembly=ZXing.Net.Mobile.Forms"
+             x:Class="SuppliersApp.Views.BarcodePage"
+             NavigationPage.HasNavigationBar="False"
+             
+              xmlns:Helpers="clr-namespace:SuppliersApp.Helpers">
+    <!--<Shell.TitleView>
+        <StackLayout Orientation="Horizontal">
+            <Label Text="Products" VerticalTextAlignment="Center"
+                   HorizontalTextAlignment="Center"
+                   TextColor="White"
+                   FontSize="Large"
+                   FontFamily="ThemeFontBold"
+                  />
+            <Grid HorizontalOptions="EndAndExpand" VerticalOptions="Center">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <ImageButton Grid.Row="0"
+                             Margin="0,0,10,0" BackgroundColor="Transparent"
+                             Source="{FontImage FontFamily=UserIcon,
+                    Glyph={x:Static Helpers:IconFonts.ShoppingOutline},Size=45,Color=White}"
+                            
+                             Command="{Binding ViewCart}"/>
+                <Label  BackgroundColor="red" Text="{Binding Total.TCount, Mode=TwoWay}" TextColor="White"
+                       FontSize="Caption" FontFamily="ThemeFontBold"
+                       Margin="0,5,8,0" HorizontalOptions="End" VerticalOptions="Start" Grid.Row="0"   />
+            </Grid>
+        </StackLayout>
+    </Shell.TitleView>-->
+    <Grid RowSpacing="0" >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <StackLayout Grid.Row="0" 
+                     HeightRequest="50"
+                     BackgroundColor="{StaticResource NormalColor}"
+                     Orientation="Horizontal">
+            
+            <Label Text="Hammé Naturals" Margin="30,0,0,0" CharacterSpacing="2" FontFamily="ThemeFontBold" FontSize="Small"
+                   HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" TextColor="White"/>
+            <Grid>
+                <ImageButton Source="cart.png"
+                         HorizontalOptions="End"
+                         BackgroundColor="Transparent" 
+                         Command="{Binding ViewCart}"
+                         Padding="10"/>
+                <Frame BackgroundColor="Red"
+                       CornerRadius="30"
+                       Padding="2"
+                       HeightRequest="13"
+                       WidthRequest="13"
+                       HorizontalOptions="EndAndExpand"
+                       VerticalOptions="StartAndExpand">
+                    <Label Text="{Binding Total.TCount,Mode=TwoWay}"
+                           HorizontalOptions="CenterAndExpand"
+                           VerticalOptions="CenterAndExpand"
+                           FontSize="8"
+                           TextColor="White"/>
+                </Frame>
+            </Grid>
+        </StackLayout>
+
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <zxing:ZXingScannerView Grid.Row="0" 
+                                x:Name="_scanView" 
+                                ScanResultCommand="{Binding AddProductCommand}"
+                                IsScanning="true"
+                                WidthRequest="150" HeightRequest="100" 
+                                IsAnalyzing="True"/>
+            <zxing:ZXingDefaultOverlay  />
+
+            <StackLayout   Grid.Row="1"  BackgroundColor="#edf2f4">
+                <CollectionView 
+                    Margin="2"
+                    ItemsSource="{Binding Items}"
+                    SelectionMode="None"
+                    RemainingItemsThreshold="0"
+                    RemainingItemsThresholdReachedCommand="{Binding LoadCartItemsCommand}" 
+                    x:Name="List">
+                    <CollectionView.EmptyView>
+                        <Label
+                    Text="Your cart is empty"
+                    VerticalTextAlignment="Center"
+                    HorizontalTextAlignment="Center"/>
+                    </CollectionView.EmptyView>
+                    <CollectionView.ItemsLayout>
+                        <GridItemsLayout VerticalItemSpacing="5"  Orientation="Vertical"/>
+                    </CollectionView.ItemsLayout>
+                    <!--<CollectionView.Footer>
+                    
+                   
+                </CollectionView.Footer>-->
+
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <SwipeView>
+                                <SwipeView.RightItems>
+                                    <SwipeItems>
+                                        <SwipeItem IconImageSource="delete.png"
+                                               BackgroundColor="LightGreen"
+                                               Command="{Binding Path=BindingContext.RemoveItem, Source={x:Reference List}}" CommandParameter="{Binding}"/>
+                                    </SwipeItems>
+                                </SwipeView.RightItems>
+
+                                <Frame Padding="4">
+                                    <Grid  Margin="15,0,15,0" >
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="auto"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="auto"/>
+                                            <RowDefinition Height="auto"/>
+                                        </Grid.RowDefinitions>
+                                        <Frame CornerRadius="10" Padding="0" Grid.Row="0" Grid.Column="0" >
+                                            <Image
+                                            Source="{Binding ImagePath}"
+                                            HeightRequest="80"
+                                            WidthRequest="90"
+                                            Aspect="AspectFill"/>
+                                        </Frame>
+
+                                        <Label Margin="2,2,0,0" 
+                                               Text="{Binding ItemName}"
+                                               Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2"
+                                               TextColor="#2B2B2B" FontSize="Small"
+                                               FontFamily="ThemeFontBold"/>
+                                        <StackLayout Grid.Column="2" Grid.Row="0" HorizontalOptions="EndAndExpand" VerticalOptions="End"  Orientation="Horizontal">
+                                            <Frame Padding="0" HorizontalOptions="Start" CornerRadius="15" >
+                                                <StackLayout Orientation="Horizontal" Spacing="14"  >
+                                                    <Frame BackgroundColor="{StaticResource Key=NormalColor}" Padding="0" >
+                                                        <Label Margin="5,0,5,5" TextColor="White" Text=" -" FontSize="Medium" WidthRequest="20" >
+                                                            <Label.GestureRecognizers>
+                                                                <TapGestureRecognizer Command="{Binding Path=BindingContext.DecreaseQtyCommand, Source={x:Reference List}, Mode=TwoWay}" CommandParameter="{Binding}"/>
+                                                            </Label.GestureRecognizers>
+                                                        </Label>
+                                                    </Frame>
+
+                                                    <Label Text="{Binding Quantity2}" FontSize="Small" VerticalTextAlignment="Center"/>
+                                                    <Frame BackgroundColor="{StaticResource Key=NormalColor}" Padding="0" >
+                                                        <Label TextColor="White" Margin="5,0,5,0" Text="+"  FontSize="Medium" WidthRequest="20"  >
+                                                            <Label.GestureRecognizers>
+                                                                <TapGestureRecognizer Command="{Binding Path=BindingContext.IncreaseQtyCommand, Source={x:Reference List}, Mode=TwoWay}" CommandParameter="{Binding .}"/>
+                                                            </Label.GestureRecognizers>
+                                                        </Label>
+                                                    </Frame>
+                                                </StackLayout>
+
+                                            </Frame>
+                                        </StackLayout>
+                                        <Label Grid.Row="0" Grid.Column="1"  VerticalTextAlignment="End"  HorizontalOptions="Start"   TextColor="{StaticResource Key=NormalColor}" FontSize="Small" FontFamily="ThemeFontBold">
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <FormattedString.Spans>
+                                                        <Span Text="Rs: " />
+                                                        <Span Text="{Binding MRP,Mode=TwoWay}" FontAttributes="Bold"/>
+                                                        <Span Text="/-"/>
+                                                    </FormattedString.Spans>
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+
+                                        <Frame  Padding="2" BackgroundColor="{StaticResource NormalColor}" Grid.Column="1" Grid.Row="1" VerticalOptions="End">
+                                            <Label Text="Add Discount" TextColor="White">
+                                                <Label.GestureRecognizers>
+                                                    <TapGestureRecognizer Command="{Binding Path=BindingContext.AddDisc, Mode=TwoWay, Source={x:Reference List}}" CommandParameter="{Binding}"/>
+                                                </Label.GestureRecognizers>
+                                            </Label>
+                                        </Frame>
+
+                                        <Frame  Padding="2" BackgroundColor="{StaticResource NormalColor}" Grid.Column="2" Grid.Row="1" VerticalOptions="End">
+                                            <Label Text="Add to Cart" TextColor="White">
+                                                <Label.GestureRecognizers>
+                                                    <TapGestureRecognizer Command="{Binding Path=BindingContext.AddCartItem,Mode=TwoWay, Source={x:Reference List}}" CommandParameter="{Binding}"/>
+                                                </Label.GestureRecognizers>
+                                            </Label>
+                                        </Frame>
+                                    </Grid>
+                                </Frame>
+                                
+                            </SwipeView>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+
+            </StackLayout>
+            <!--IsVisible="{Binding IsVisisble}"-->
+            <Frame  HasShadow="True" Padding="0" Grid.Row="2" >
+                <StackLayout Orientation="Horizontal" Padding="20">
+                    <StackLayout Orientation="Vertical" >
+                        <Label Text="Total (inc. tax)" FontSize="Small" HorizontalTextAlignment="Center"/>
+                        <Label FontSize="Small" TextColor="{StaticResource Key=NormalColor}"  HorizontalTextAlignment="Center">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <FormattedString.Spans>
+                                        <Span Text="Rs:" />
+                                        <Span Text="{Binding Total.TBill,Mode=TwoWay}" FontFamily="ThemeFontBold"/>
+                                        <Span Text="/-"/>
+                                    </FormattedString.Spans>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+
+                    </StackLayout>
+                    <Frame BackgroundColor="{StaticResource Key=NormalColor}" HorizontalOptions="EndAndExpand" Padding="15">
+
+                        <Label TextColor="White" HorizontalTextAlignment="Center">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <FormattedString.Spans>
+                                        <Span Text="Manually Add" FontFamily="ThemeFontBold"/>
+
+                                    </FormattedString.Spans>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding ManuallyAddPage}"/>
+                        </Frame.GestureRecognizers>
+                    </Frame>
+
+                    <!--<Frame BackgroundColor="{StaticResource Key=NormalColor}" HorizontalOptions="EndAndExpand" Padding="15">
+
+                        <Label TextColor="White" HorizontalTextAlignment="Center">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <FormattedString.Spans>
+                                        <Span Text="View Cart (" FontFamily="ThemeFontBold"/>
+                                        <Span Text="{Binding Total.TCount,Mode=TwoWay}" FontFamily="ThemeFontBold"/>
+                                        <Span Text=")" FontFamily="ThemeFontBold"/>
+                                    </FormattedString.Spans>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding ViewCart}"/>
+                        </Frame.GestureRecognizers>
+                    </Frame>-->
+                </StackLayout>
+            </Frame>
+        </Grid>
+    </Grid>
+</ContentPage>

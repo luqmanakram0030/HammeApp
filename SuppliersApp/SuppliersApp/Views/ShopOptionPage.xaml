@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SuppliersApp.Views.ShopOptionPage"
+             xmlns:Helpers="clr-namespace:SuppliersApp.Helpers">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="ButtonStyle" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="{StaticResource NormalColor}"/>
+                <Setter Property="CornerRadius" Value="5"/>
+                <Setter Property="HeightRequest" Value="75"/>
+                <Setter Property="ContentLayout" Value="Top,10"/>
+                <Setter Property="TextColor" Value="White"/>
+                <Setter Property="FontSize" Value="12"/>
+                <Setter Property="TextTransform" Value="None"/>
+            </Style>
+            <Style x:Key="FrameStyle" TargetType="Frame">
+                <Setter Property="BackgroundColor" Value="#92D050"/>
+                <Setter Property="CornerRadius" Value="0"/>
+                <Setter Property="HeightRequest" Value="120"/>
+            </Style>
+            <Style x:Key="SubTextStyle" TargetType="Label">
+                <Setter Property="FontFamily" Value="ThemeFontBold"/>
+                <Setter Property="FontSize" Value="Caption"/>
+                <Setter Property="TextColor" Value="Black"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <Grid ColumnDefinitions="5*,5*" VerticalOptions="Center" Margin="10" Visual="Material" >
+
+         
+            <Button Style="{StaticResource ButtonStyle}"
+                        Text="Search Shop" 
+                        ImageSource="{FontImage FontFamily=UserIcon,
+                         Glyph={x:Static  Helpers:IconFonts.SearchWeb},Size=30, Color=White}"
+                        Command="{Binding ShopSearchCommand}"
+                        Grid.Row="0" Grid.Column="0"/>
+            <Button Style="{StaticResource ButtonStyle}"
+                        Text="Scan Shop" 
+                        Command="{Binding ShopScanCommand}"
+                        ImageSource="{FontImage FontFamily=UserIcon,
+                         Glyph={x:Static Helpers:IconFonts.QrcodeScan},Color=White,Size=30}"
+                        Grid.Column="1"
+                        Grid.Row="0"/>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

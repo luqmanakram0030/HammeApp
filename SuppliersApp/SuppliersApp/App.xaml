@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+               xmlns:combobox="clr-namespace:Syncfusion.XForms.ComboBox;assembly=Syncfusion.SfComboBox.XForms"
+             xmlns:renderer="clr-namespace:SuppliersApp.Renderers"
+             x:Class="SuppliersApp.App">
+    <Application.Resources>
+        <ResourceDictionary>
+            <Color x:Key="NormalColor">#3b8143</Color>
+            <Color x:Key="seperatorGrey">#E6E6E6</Color>
+            <Color x:Key="buttonBg">#98E5A8</Color>
+            
+            
+            <Style x:Key="FrameStyle" TargetType="Frame">
+                <Setter Property="Padding" Value="10,0,0,0"/>
+                <Setter Property="BackgroundColor" Value="White"/>
+                <Setter Property="BorderColor" Value="#44A7C4"/>
+
+                <Setter Property="CornerRadius" Value="15"/>
+                <Setter Property="HeightRequest" Value="50"/>
+            </Style>
+            
+            
+            <Style x:Key="borderlessentry" TargetType="renderer:BorderlessEntry">
+                <Setter Property="TextColor" Value="White"/>
+                <Setter Property="FontSize" Value="16"/>
+                <Setter Property="PlaceholderColor" Value="LightGray"/>
+            </Style>
+
+            <Style x:Key="entryFrame" TargetType="Frame">
+                <Setter Property="HasShadow" Value="False"/>
+                <Setter Property="BackgroundColor" Value="Transparent"/>
+                <Setter Property="BorderColor" Value="White"/>
+                <Setter Property="CornerRadius" Value="30"/>
+                <Setter Property="HeightRequest" Value="40"/>
+                <Setter Property="Padding" Value="10,0"/>
+            </Style>
+
+            <Style x:Key="rateFrame" TargetType="Frame">
+                <Setter Property="HasShadow" Value="False"/>
+                <Setter Property="BackgroundColor" Value="Transparent"/>
+                <Setter Property="BorderColor" Value="White"/>
+                <Setter Property="CornerRadius" Value="30"/>
+                <Setter Property="HeightRequest" Value="35"/>
+                <Setter Property="Padding" Value="10,0"/>
+            </Style>
+
+            <Style x:Key="headings" TargetType="Label">
+                <Setter Property="TextColor" Value="White"/>
+                <Setter Property="FontSize" Value="14"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="Margin" Value="2,0,0,0"/>
+            </Style>
+
+            <Style x:Key="comboBox" TargetType="combobox:SfComboBox">
+                <Setter Property="TextColor" Value="Black"/>
+                <Setter Property="TextSize" Value="14"/>
+                <Setter Property="ShowBorder" Value="False"/>
+                <Setter Property="ShowClearButton" Value="False"/>
+            </Style>
+
+            <Style x:Key="RatecomboBox" TargetType="combobox:SfComboBox">
+                <Setter Property="TextColor" Value="White"/>
+                <Setter Property="TextSize" Value="14"/>
+                <Setter Property="SelectedValue" Value="Rate"/>
+                <Setter Property="ShowBorder" Value="False"/>
+                <Setter Property="ShowClearButton" Value="False"/>
+            </Style>
+
+            <Style x:Key="starPath" TargetType="Path">
+                <Setter Property="Data" Value="M12360 12306c-15,0 -30,0 -45,0l-68 0c-11,0 -21,-1 -30,4 -13,8 -16,24 -8,37 2,2 3,4 5,5 5,4 22,16 29,20l11 9c2,0 3,1 4,2l25 18c10,6 19,14 29,20 1,1 6,5 8,6 0,2 -14,44 -15,49l-6 17c-1,3 -1,5 -2,8l-5 17c-2,7 -5,14 -7,20l-4 13c-3,9 -3,14 1,22 1,2 2,4 3,6 2,2 4,3 7,5 3,2 7,3 11,4l5 0c2,-1 5,-1 8,-3 0,0 0,0 1,0 4,-2 12,-8 15,-11l53 -38c2,-1 3,-2 4,-3l26 -18c1,-1 2,-2 3,-3 3,-1 5,-4 8,-5l54 39c1,1 2,1 2,1 1,1 1,1 2,2l4 2c1,1 2,2 3,3 3,2 5,3 8,5l22 16c3,2 10,8 14,10 4,2 7,3 11,3l1 0c7,-1 14,-3 18,-8l1 -2c1,0 2,-1 2,-1 3,-5 4,-9 4,-15 0,-7 -6,-23 -8,-31l-10 -33c-2,-7 -5,-14 -7,-21l-5 -17c-2,-5 -3,-11 -5,-16 0,-2 -1,-3 -1,-5 -1,-1 -1,-1 -1,-2 0,0 0,-1 -1,-2 0,-2 -2,-6 -2,-8 1,-1 2,-2 4,-3l12 -9c7,-5 16,-11 23,-16 2,-1 3,-2 4,-3 1,-1 2,-1 4,-2l21 -15c1,-1 2,-2 4,-3l7 -5c1,-1 1,-1 2,-1l26 -19c0,0 0,0 1,-1 2,-2 3,-4 5,-7 3,-6 3,-14 0,-20 -1,-6 -6,-11 -11,-13 -6,-4 -11,-4 -21,-4l-73 0c-17,0 -33,0 -49,0 0,-2 -6,-19 -7,-22 0,-1 -1,-1 -1,-2 0,-2 -1,-3 -2,-5l-8 -26c-1,-1 -1,-2 -1,-3 -1,-2 -1,-3 -2,-5l-9 -29c-2,-5 -5,-14 -6,-19 -1,-2 -1,-3 -2,-5l-2 -7c-1,-1 -1,-2 -1,-2 0,-1 -1,-2 -1,-3 0,0 -1,-1 -1,-2 -2,-2 -4,-4 -6,-6l-4 -3c-8,-3 -16,-4 -24,0 -1,1 -2,1 -4,2 -1,1 -2,2 -3,3 -5,6 -7,13 -9,20 0,1 -1,2 -1,3 0,1 0,1 -1,2l-2 7c0,1 -1,2 -1,3l-4 12c0,1 0,1 -1,2l-9 27c0,1 0,1 0,2l-11 32c-2,5 -7,20 -8,24z"/>
+                <Setter Property="Fill" Value="#FFAD33"/>
+                <Setter Property="Aspect" Value="Uniform"/>
+            </Style>
+
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

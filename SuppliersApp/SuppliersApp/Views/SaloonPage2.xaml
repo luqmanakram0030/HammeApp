@@ -1,0 +1,213 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             NavigationPage.HasNavigationBar="False"
+              xmlns:input="clr-namespace:Plugin.InputKit.Shared.Controls;assembly=Plugin.InputKit" xmlns:renderers="clr-namespace:SuppliersApp.Renderers"
+             mc:Ignorable="d"
+              x:Class="SuppliersApp.Views.SaloonPage2" >
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="FrameStyle" TargetType="Frame">
+                <Setter Property="Padding" Value="0"/>
+                <Setter Property="HasShadow" Value="False"/>
+                <Setter Property="BackgroundColor" Value="White"/>
+                <Setter Property="BorderColor" Value="{StaticResource NormalColor}"/>
+                <Setter Property="CornerRadius" Value="15"/>
+                <Setter Property="HeightRequest" Value="50"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ScrollView>
+        <StackLayout Padding=" 16">
+            <Frame CornerRadius="10">
+                <StackLayout>
+                    
+                    <!--Heading for the form Starts from here-->
+
+                    <Frame CornerRadius="10" BackgroundColor="{StaticResource NormalColor}">
+                        <StackLayout >
+                            <Label Text="Questionnaire Survey" FontAttributes="Bold" TextColor="White" FontSize="22" HorizontalOptions="Center"/>
+                            <Label Text="for Barer/Salon" TextColor="White" FontAttributes="Bold" HorizontalOptions="Center"/>
+                        </StackLayout>
+                    </Frame>
+                    
+                    <!--Question No 1-->
+                    
+                    <Label Text="How many customers do you handle at a time?" FontSize="17" TextColor="Black" FontAttributes="Bold"/>
+
+                    <Frame Style="{StaticResource FrameStyle}">
+                        
+                        <renderers:BorderlessEntry Placeholder="XX" 
+                                                   Keyboard="Numeric"
+                                                   FontSize="12"
+                                                   Margin="5,0,0,0"/>
+                        
+                    </Frame>
+
+                    <!--Question No 2-->
+
+                    <Label Text="How many employees do you have?" FontSize="17" TextColor="Black" FontAttributes="Bold"/>
+
+                    <!--Hair Staff-->
+
+                    <StackLayout Padding="10">
+                        
+                        <Label Text="Hair Staff" FontSize="17" TextColor="Black" FontAttributes="Bold"/>
+
+                        <Frame Style="{StaticResource FrameStyle}">
+                            
+                            <renderers:BorderlessEntry 
+                                Placeholder="XX" 
+                                Keyboard="Numeric"
+                                FontSize="12"/>
+                            
+                        </Frame>
+                        
+                    </StackLayout>
+                    
+                    <!--Skin Staff-->
+                    
+                    <StackLayout Padding="10">
+                        
+                        <Label Text="Skin Staff" FontSize="17" TextColor="Black" FontAttributes="Bold"/>
+
+                        <Frame Style="{StaticResource FrameStyle}">
+                            <renderers:BorderlessEntry 
+                                Placeholder="XX" 
+                                Keyboard="Numeric"
+                                FontSize="12"/>
+                            
+                        </Frame>
+                        
+                    </StackLayout>
+
+                    <!--Mackup Staff-->
+
+                    <StackLayout Padding="10">
+                        
+                        <Label Text="Mackup Staff" FontSize="17" TextColor="Black" FontAttributes="Bold"/>
+
+                        <Frame
+                            Style="{StaticResource FrameStyle}">
+                            
+                            <renderers:BorderlessEntry 
+                                Placeholder="XX"
+                                Keyboard="Numeric"
+                                FontSize="12"/>
+                            
+                        </Frame>
+                        
+                    </StackLayout>
+
+                    <!--Total Staff-->
+
+                    <StackLayout Padding="10">
+                        
+                        <Label Text="Total Staff" FontSize="17" TextColor="Black" FontAttributes="Bold"/>
+
+                        <Frame Style="{StaticResource FrameStyle}">
+                            
+                            <renderers:BorderlessEntry 
+                                Placeholder="XX" 
+                                Keyboard="Numeric"
+                                FontSize="12"/>
+                            
+                        </Frame>
+                        
+                    </StackLayout>
+
+                    <!--Questin no 3-->
+
+                    <Label Text="How many customers do you handle in a day?" FontSize="17" TextColor="Black" FontAttributes="Bold"/>
+
+                    <Frame Style="{StaticResource FrameStyle}">
+
+                        <renderers:BorderlessEntry 
+                            Placeholder="XX" 
+                            Keyboard="Numeric"
+                            FontSize="12"/>
+
+                    </Frame>
+
+                    <!--Questin no 4-->
+
+                    <Label Text="How many skin facials do you do in a day?" FontSize="17" TextColor="Black" FontAttributes="Bold"/>
+
+                    <Frame Style="{StaticResource FrameStyle}">
+                        
+                        <renderers:BorderlessEntry 
+                            Placeholder="XX" 
+                            Keyboard="Numeric"
+                            FontSize="12"/>
+                        
+                    </Frame>
+
+                    <!--Questin no 5-->
+
+                    <Label Text="How many facial bed you have?" FontSize="17" TextColor="Black" FontAttributes="Bold"/>
+
+                    <Frame Style="{StaticResource FrameStyle}">
+                        
+                        <renderers:BorderlessEntry 
+                            Placeholder="XX" 
+                            Keyboard="Numeric"
+                            FontSize="12"/>
+                        
+                    </Frame>
+
+                    <!--Questin no 6-->
+
+                    <Label Text="How many haircuts do you do in a day?" FontSize="17" TextColor="Black" FontAttributes="Bold"/>
+
+                    <Frame Style="{StaticResource FrameStyle}">
+                        
+                        <renderers:BorderlessEntry 
+                            Placeholder="XX" 
+                            Keyboard="Numeric"
+                            FontSize="12"/>
+                        
+                    </Frame>
+
+                    <!--Questin no 7-->
+
+                    <Label Text="How many chairs you have?" FontSize="17" TextColor="Black" FontAttributes="Bold"/>
+                    <Frame Style="{StaticResource FrameStyle}">
+                        
+                        <renderers:BorderlessEntry 
+                            Placeholder="XX" 
+                            Keyboard="Numeric"
+                            FontSize="12"/>
+                        
+                    </Frame>
+
+                    <!--Questin no 8-->
+
+                    <Label Text="Do you offer any combo deals?If any, please mention or provide us your pamphlet." FontSize="17" TextColor="Black" FontAttributes="Bold"/>
+                   
+                    <input:RadioButtonGroupView>
+                        <input:RadioButton Text="Yes" Clicked="RadioButton_Clicked"/>
+
+                        <Frame Style="{StaticResource FrameStyle}">
+
+                            <renderers:BorderlessEntry 
+                                Placeholder="Details"
+                                x:Name="entry1"
+                                FontSize="12"/>
+                            
+                        </Frame>
+                        
+                        <input:RadioButton Text="No"/>
+                        
+                    </input:RadioButtonGroupView>
+                  
+                    <Button Clicked="Button_Clicked" Text="Submit" BackgroundColor="{StaticResource NormalColor}" HorizontalOptions="Center" WidthRequest="200" CornerRadius="20" Margin="0,20,0,0"/>
+               
+                </StackLayout>
+            </Frame>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>
